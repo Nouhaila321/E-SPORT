@@ -24,10 +24,9 @@ class App extends Component {
    render(){
     return (
       <div className="App">
-        <Navbar title='GITHUB' icon='fab fa-github'/> 
         
-        <div className="Container">   
-         
+        <Navbar title='Leagues' icon='fas fa-futbol'/> 
+        <div className="Container">  
           <Users loading={this.state.loading} users={this.state.users}/>
         </div>
       </div>
