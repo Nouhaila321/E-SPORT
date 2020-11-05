@@ -1,14 +1,13 @@
 import React from 'react'
 
-const Search = () => {
+const Search = (props) => {
     return (
         <div>
-            
-                <form className="form">
-                    <input type="text" name="text" placeholder="Search ..."> </input>
-                    <input type="submit" value="Search" className="btn btn-dark btn-block"> </input>
-                </form>
-            
+            <h4> {props.title} </h4>
+            <form className="form">
+                <input type="text" name="text" placeholder="Search ..."> </input>
+                <input type="submit" value="Search" className="btn btn-dark btn-block"> </input>
+            </form>
         </div>
     )
 }

@@ -1,22 +1,25 @@
 import React from 'react'
+import { Link }  from 'react-router-dom';
 
  
 const UsersItem = props =>{
-        const {name ,image_url ,url } = props.user;
+        const { id , name ,image_url } = props.user;
+       // const game = props.game;
+        //const UGame = (this.props.user && videogame && videogame['name']); 
+        
+
         return (
-            <div className='card text-center'>
+
+            <div className='card center'>
                 <img 
                     src={image_url}
                     alt=''
-                    className='round-img'
-                    style={{width: '60px'}}
+                    style={{width: '200px'}}
                 /> 
                 <h3> {name} </h3>
-                <a href = {url} className='btn btn-dark btn-sm my-1'> More .. </a>
+                <Link to = {`/leagues/${id}`} className='btn btn-dark btn-sm my-1'> Details .. </Link>
             </div>
         )
 }
-/*
 
-*/
 export default UsersItem
