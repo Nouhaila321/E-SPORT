@@ -16,12 +16,12 @@ import { Link }  from 'react-router-dom';
                     Games
                 </a>
                 <div className="dropdown-content">
-                    <Link to= '/leagues' > All games </Link>
-                    <Link to= '/leagues/CSGO'  > CS-GO </Link>
-                    <Link to= '/leagues/COD' > Call Of Duty</Link>
-                    <Link to= '/leagues/LOL' > League Of Legend </Link>
-                    <Link to= '/leagues/PUBG' > PUBG</Link>
-                    <Link to= '/leagues/Overwatch' > Overwatch </Link>
+                    <Link to= '/teams' > All games </Link>
+                    <Link to= '/teams' game='CS-GO'   > CS-GO </Link>
+                    <Link to= '/teams' game='COD'> Call Of Duty</Link>
+                    <Link to= '/teams' game='LOL'> League Of Legend </Link>
+                    <Link to= '/teams' game='pubg'> PUBG</Link>
+                    <Link to= '/teams' game='Overwatch'> Overwatch </Link>
                 </div>
             </div>
             
@@ -32,7 +32,7 @@ import { Link }  from 'react-router-dom';
                     <Link className="nav-link" to= '/teams'> All teams</Link>
                 </li>
                 <li>
-                    <Link className="nav-link" to= '/search'> Search </Link>
+                    {/**<Link className="nav-link" to= '/search'> Search </Link> */}
                 </li>
                 <li>
                     <Link className="nav-link" to= '/about'> About</Link>

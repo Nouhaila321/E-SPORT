@@ -29,9 +29,9 @@ export class Team extends Component {
                      <h4> Game : { this.props.team && current_videogame && current_videogame['name']}</h4>
                      <h4> Players: </h4>
                      
-                        {this.props.team && this.props.team.players.map( player => (
+                        {/*this.props.team && this.props.team.players.map( player => (
                                 <h4> {player['name']}</h4>   
-                        ))}
+                        ))*/}
                      
 
                      <br />

@@ -4,7 +4,7 @@ import { Link }  from 'react-router-dom';
  
 const UsersItem = props =>{
         const { id , name ,image_url } = props.user;
-       // const game = props.game;
+        //const game = props.game;
         //const UGame = (this.props.user && videogame && videogame['name']); 
         
 

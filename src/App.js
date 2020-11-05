@@ -17,6 +17,7 @@ class App extends Component {
 
   state = {
     users: [],
+    usersG: [],
     series:[],
     teams:[],
     games: [],
@@ -36,7 +37,7 @@ class App extends Component {
     const res_t = await axios.get('https://api.pandascore.co/teams?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8');
     this.setState({ teams: res_t.data , loading: false});
     this.setState({ users: res.data , loading: false});
-    
+
   }
 
   singleUser= async(idUser) => {
@@ -59,11 +60,20 @@ class App extends Component {
 
   }
 
+  GetGames = async(game) => {
+    this.setState({ loading: true });
+    const res = await axios.get(`https://api.pandascore.co/teams?search[slug]=${game}&&token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
+    this.setState({teams: res.data, loading: false});
+
+  }
+
+    
    render(){
 
     const indexOfLastUser = this.state.currentPage * this.state.usersPerPage;
     const indexOfFirstUser = indexOfLastUser - this.state.usersPerPage;
     const currentUsers = this.state.users.slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsersG = this.state.usersG.slice(indexOfFirstUser, indexOfLastUser);
     const currentTeams = this.state.teams.slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = (pageNumber) => {
@@ -82,79 +92,20 @@ class App extends Component {
             path = '/leagues'
             render = { props => (
               <Fragment >
-                <Users  game ='All games' loading={this.state.loading} users={currentUsers}/>
+                <Users loading={this.state.loading} users={currentUsers}/>
                 <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
               </Fragment>
             )}
           ></Route>
 
-          {/* leagues/PUBG*/}
+          {/* leagues/:game  */}    
           <Route 
             exact 
-            path = '/leagues/PUBG'
+            path = '/leagues/:game'
             render = { props => (
               <Fragment >
-                <Users  game ='PUBG' loading={this.state.loading} users={currentUsers}/>
-                <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
-              </Fragment>
-            )}
-          ></Route>
-          
-          {/* leagues/LOL*/}
-          <Route 
-            exact 
-            path = '/leagues/LOL'
-            render = { props => (
-              <Fragment >
-                <Users  game ='League Of Legend' loading={this.state.loading} users={currentUsers}/>
-                <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
-              </Fragment>
-            )}
-          ></Route>
-
-          {/* leagues/COD*/}
-          <Route 
-            exact 
-            path = '/leagues/COD'
-            render = { props => (
-              <Fragment >
-                <Users  game ='Call Of Duty' loading={this.state.loading} users={currentUsers}/>
-                <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
-              </Fragment>
-            )}
-          ></Route>
-
-          {/* leagues/Overwatch*/}
-          <Route 
-            exact 
-            path = '/leagues/Overwatch'
-            render = { props => (
-              <Fragment >
-                <Users  game ='Overwatch' loading={this.state.loading} users={currentUsers}/>
-                <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
-              </Fragment>
-            )}
-          ></Route>
-
-          {/* leagues/CSGO*/}
-          <Route 
-            exact 
-            path = '/leagues/CSGO'
-            render = { props => (
-              <Fragment >
-                <Users  game ='CS-GO' loading={this.state.loading} users={this.state.users}/>
-                <Pagination UsersPerPage={this.state.usersPerPage} totalUsers={this.state.users.length} paginate={paginate} to={'leagues'}/>
-              </Fragment>
-            )}
-          ></Route>
-
-          {/* leagues/Overwatch*/}
-          <Route 
-            exact 
-            path = '/leagues/Overwatch'
-            render = { props => (
-              <Fragment >
-                <Users  game ='Overwatch' loading={this.state.loading} users={this.state.users}/>
+                <Users { ...props} loading={this.state.loading} GetGames={this.GetGames} users={currentUsersG}/>
+                <Pagination UsersPerPage={this.state.usersPerPage}  totalUsers={this.state.usersG.length} paginate={paginate} to={'leagues'}/>
               </Fragment>
             )}
           ></Route>
@@ -209,7 +160,7 @@ class App extends Component {
               />
           )}
           ></Route>
-
+         
         </Switch>
         </div>
       </div>
@@ -219,17 +170,3 @@ class App extends Component {
 }
 
 export default App;
-/**
- * <Route 
-            exact path= '/leagues/:id/series'
-            render={ props => (
-              <Serie 
-                { ...props} 
-                GetSeries ={this.GetSeries} 
-                loading={this.state.loading} 
-                series={this.state.series}
-              />
-          )}
-          ></Route>
-
- */
