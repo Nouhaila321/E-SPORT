@@ -8,7 +8,7 @@ import { Link }  from 'react-router-dom';
             <nav className="navbar navbar-expand-lg navbar-light bg-light"> 
             <h1>
                 <i className={icon}/> 
-                <Link to='/' > {title} </Link>
+                <Link to='/leagues' > {title} </Link>
             </h1>
             <ul>
             <div className="dropdown">
@@ -43,14 +43,3 @@ import { Link }  from 'react-router-dom';
 }
 
 export default Navbar;
-/*
-<select name="game" id="game">
-                <option value="All games"> All games </option>
-                <option value="CS-GO"> CS-GO </option>
-                <option value="Call Of Duty"> Call Of Duty </option>
-                <option value="League Of Legend"> League Of Legend </option>
-                <option value="PUBG"> PUBG </option>
-                <option value="Overwatch"> Overwatch </option>
-            </select>
-
-*/ 
