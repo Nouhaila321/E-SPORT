@@ -33,8 +33,8 @@ class App extends Component {
   componentDidMount = async() => {
 
     this.setState({ loading: true });
-    const res = await axios.get('https://api.pandascore.co/leagues?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8');
-    const res_t = await axios.get('https://api.pandascore.co/teams?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8');
+    const res = await axios.get('/api/leagues?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8');
+      const res_t = await axios.get('/api/teams?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8');
     this.setState({ teams: res_t.data , loading: false});
     this.setState({ users: res.data , loading: false});
 
@@ -42,27 +42,27 @@ class App extends Component {
 
   singleUser= async(idUser) => {
     this.setState({ loading: true });
-    const res = await axios.get(`https://api.pandascore.co/leagues/${idUser}/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
+    const res = await axios.get(`/api/leagues/${idUser}/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
     this.setState({ user: res.data, loading: false});
     
   }
 
   singleTeam= async(idTeam) => {
     this.setState({ loading: true });
-    const res = await axios.get(`https://api.pandascore.co/teams/${idTeam}/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
+    const res = await axios.get(`/api/teams/${idTeam}/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
     this.setState({ team: res.data, loading: false});
   }
 
   GetSeries = async(idUser) =>{
     this.setState({ loading: true });
-    const res = await axios.get(`https://api.pandascore.co/leagues/${idUser}/series/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
+    const res = await axios.get(`/api/leagues/${idUser}/series/?token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
     this.setState({ series: res.data, loading: false});
 
   }
 
   GetGames = async(game) => {
     this.setState({ loading: true });
-    const res = await axios.get(`https://api.pandascore.co/teams?search[slug]=${game}&&token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
+    const res = await axios.get(`/api/teams?search[slug]=${game}&&token=UIm1bgREmxGoM3moShmeW9YwAxwLxkzSLXm89BEOTC_2ECJUos8`);
     this.setState({teams: res.data, loading: false});
 
   }
